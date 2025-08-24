@@ -181,7 +181,19 @@ aluna-ai/
 └── 📁 tests/                  # Suite de tests
 ```
 
-## 🎨 **Filosofía de Diseño**
+## � **Ubicación de AlunaAI en el sistema económico**
+
+Según la clasificación tradicional de sectores económicos (ver recurso "El Sistema Económico"), AlunaAI se ubica en:
+
+- **Sector económico:** Terciario (Servicios)
+- **Subsector:** Servicios basados en tecnología de la información y consultoría
+
+**Justificación:**
+AlunaAI es una plataforma digital que ofrece servicios de inteligencia artificial, consultoría para la toma de decisiones y desarrollo personal, apoyada en tecnología y conocimiento. No produce bienes materiales ni transforma materias primas (sectores primario o secundario), sino que provee servicios avanzados, educativos y tecnológicos.
+
+Esto se alinea con la descripción del proyecto, donde se destaca el enfoque en IA, consultoría, educación y tecnología para el desarrollo humano y organizacional. Si el marco de referencia incluye una categoría de “servicios avanzados”, “servicios profesionales” o “tecnologías de la información”, ahí encajaría AlunaAI.
+
+## �🎨 **Filosofía de Diseño**
 
 ### **Inspiración Kogui**
 - **Colores naturales**: Paleta inspirada en la Sierra Nevada
