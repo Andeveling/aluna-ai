@@ -1,0 +1,370 @@
+# GitHub Projects API Configuration for Aluna AI Roadmap
+# Este archivo define la estructura del proyecto y puede ser usado con la API de GitHub Projects
+
+project_config:
+  name: "📅 Roadmap Aluna AI"
+  description: "Plataforma de IA para toma de decisiones conscientes basada en fortalezas personales y cosmovisión Kogui"
+  owner: "Andeveling"
+  repository: "aluna-ai"
+  
+  # Configuración de campos personalizados
+  custom_fields:
+    - name: "Quarter"
+      type: "single_select"
+      options:
+        - "Q1 - Validación y MVP"
+        - "Q2 - Experiencia del usuario"
+        - "Q3 - Escalabilidad y comunidad"
+        - "Q4 - Consolidación y expansión"
+    
+    - name: "Priority"
+      type: "single_select"
+      options:
+        - "🔴 Critical"
+        - "🟡 High"
+        - "🟢 Medium"
+        - "🔵 Low"
+    
+    - name: "Effort"
+      type: "single_select"
+      options:
+        - "XS (1-2 días)"
+        - "S (3-5 días)"
+        - "M (1-2 semanas)"
+        - "L (3-4 semanas)"
+        - "XL (1+ mes)"
+    
+    - name: "Category"
+      type: "single_select"
+      options:
+        - "🛠️ Tech/Development"
+        - "🎨 Design/UX"
+        - "🤖 AI/ML"
+        - "📊 Analytics"
+        - "👥 Community"
+        - "💰 Business"
+        - "📱 Mobile"
+
+  # Estructura de issues/tareas
+  issues:
+    # Q1 - Validación y MVP básico
+    - title: "Setup repositorio y CI/CD"
+      body: |
+        Configurar la infraestructura base del proyecto:
+        - Next.js 15 deployment en Vercel
+        - Base de datos Supabase
+        - Pipeline CI/CD automatizado
+        - Configuración de variables de entorno
+      labels: ["Q1", "tech", "setup"]
+      quarter: "Q1 - Validación y MVP"
+      priority: "🔴 Critical"
+      effort: "L (3-4 semanas)"
+      category: "🛠️ Tech/Development"
+    
+    - title: "Diseño de identidad visual"
+      body: |
+        Crear la identidad visual de Aluna AI:
+        - Logo simple y memorable
+        - Paleta de colores inspirada en cosmovisión Kogui
+        - Tipografía y elementos gráficos base
+        - Guía de estilo básica
+      labels: ["Q1", "design", "branding"]
+      quarter: "Q1 - Validación y MVP"
+      priority: "🟡 High"
+      effort: "M (1-2 semanas)"
+      category: "🎨 Design/UX"
+    
+    - title: "Onboarding con fortalezas High5"
+      body: |
+        Implementar sistema de onboarding:
+        - Input manual de fortalezas
+        - Integración simple con High5 (si disponible)
+        - Formulario de configuración inicial
+        - Validación y almacenamiento de datos
+      labels: ["Q1", "feature", "onboarding"]
+      quarter: "Q1 - Validación y MVP"
+      priority: "🔴 Critical"
+      effort: "M (1-2 semanas)"
+      category: "🛠️ Tech/Development"
+    
+    - title: "Asistente AI básico"
+      body: |
+        Desarrollar chatbot inteligente:
+        - Chat interface simple
+        - Conexión con API de OpenAI/Anthropic
+        - Prompt engineering para decisiones basadas en fortalezas
+        - Sistema de respuestas contextual
+      labels: ["Q1", "ai", "core-feature"]
+      quarter: "Q1 - Validación y MVP"
+      priority: "🔴 Critical"
+      effort: "L (3-4 semanas)"
+      category: "🤖 AI/ML"
+    
+    - title: "Landing page y registro early adopters"
+      body: |
+        Crear página de aterrizaje:
+        - Propuesta de valor clara
+        - Formulario de registro early adopters
+        - SEO básico
+        - Analytics de conversión
+      labels: ["Q1", "marketing", "frontend"]
+      quarter: "Q1 - Validación y MVP"
+      priority: "🟡 High"
+      effort: "S (3-5 días)"
+      category: "🎨 Design/UX"
+    
+    # Q2 - Experiencia del usuario
+    - title: "Historial de decisiones"
+      body: |
+        Sistema de persistencia de conversaciones:
+        - Guardar consultas por usuario
+        - Historial de respuestas del AI
+        - Búsqueda en historial
+        - Exportar conversaciones
+      labels: ["Q2", "feature", "database"]
+      quarter: "Q2 - Experiencia del usuario"
+      priority: "🟡 High"
+      effort: "M (1-2 semanas)"
+      category: "🛠️ Tech/Development"
+    
+    - title: "Recomendaciones accionables"
+      body: |
+        Mejorar calidad de respuestas del AI:
+        - Estructura de 3 opciones por decisión
+        - Pros y contras claros
+        - CTAs específicos
+        - Template de recomendaciones
+      labels: ["Q2", "ai", "ux"]
+      quarter: "Q2 - Experiencia del usuario"
+      priority: "🔴 Critical"
+      effort: "M (1-2 semanas)"
+      category: "🤖 AI/ML"
+    
+    - title: "Dashboard simple"
+      body: |
+        Visualización de fortalezas personales:
+        - Gráficos de fortalezas principales
+        - Insights de uso
+        - Progreso en toma de decisiones
+        - Métricas personales
+      labels: ["Q2", "dashboard", "visualization"]
+      quarter: "Q2 - Experiencia del usuario"
+      priority: "🟡 High"
+      effort: "L (3-4 semanas)"
+      category: "🎨 Design/UX"
+    
+    - title: "Sistema de feedback post-decisión"
+      body: |
+        Loop de mejora continua:
+        - Encuesta corta post-decisión
+        - Rating de utilidad (1-5 estrellas)
+        - Comentarios opcionales
+        - Analytics de satisfacción
+      labels: ["Q2", "feedback", "analytics"]
+      quarter: "Q2 - Experiencia del usuario"
+      priority: "🟡 High"
+      effort: "S (3-5 días)"
+      category: "📊 Analytics"
+    
+    - title: "Test cerrado con emprendedores colombianos"
+      body: |
+        Validación con usuarios reales:
+        - Reclutamiento 20-30 emprendedores
+        - Sesiones de testing
+        - Recolección de feedback
+        - Iteración basada en insights
+      labels: ["Q2", "testing", "validation"]
+      quarter: "Q2 - Experiencia del usuario"
+      priority: "🔴 Critical"
+      effort: "XL (1+ mes)"
+      category: "👥 Community"
+    
+    # Q3 - Escalabilidad y comunidad
+    - title: "Sistema multi-perfil"
+      body: |
+        Comparación de decisiones en equipos:
+        - Perfiles de equipo
+        - Decisiones colaborativas
+        - Comparación de fortalezas grupales
+        - Consenso inteligente
+      labels: ["Q3", "feature", "collaboration"]
+      quarter: "Q3 - Escalabilidad y comunidad"
+      priority: "🟡 High"
+      effort: "L (3-4 semanas)"
+      category: "🛠️ Tech/Development"
+    
+    - title: "AI avanzado - Fine-tuning"
+      body: |
+        Mejorar modelo de AI:
+        - Dataset de decisiones reales
+        - Fine-tuning del modelo
+        - A/B testing de respuestas
+        - Optimización de prompts
+      labels: ["Q3", "ai", "optimization"]
+      quarter: "Q3 - Escalabilidad y comunidad"
+      priority: "🟡 High"
+      effort: "XL (1+ mes)"
+      category: "🤖 AI/ML"
+    
+    - title: "Analytics interno avanzado"
+      body: |
+        Métricas de producto:
+        - Tracking de uso detallado
+        - Impacto en claridad de decisiones
+        - Cohort analysis
+        - Dashboard de métricas de negocio
+      labels: ["Q3", "analytics", "metrics"]
+      quarter: "Q3 - Escalabilidad y comunidad"
+      priority: "🟡 High"
+      effort: "M (1-2 semanas)"
+      category: "📊 Analytics"
+    
+    - title: "Lanzamiento beta abierta"
+      body: |
+        Apertura pública de la plataforma:
+        - Preparación infraestructura para escala
+        - Estrategia de lanzamiento
+        - PR y marketing
+        - Monitoreo post-lanzamiento
+      labels: ["Q3", "launch", "marketing"]
+      quarter: "Q3 - Escalabilidad y comunidad"
+      priority: "🔴 Critical"
+      effort: "L (3-4 semanas)"
+      category: "💰 Business"
+    
+    - title: "Contenido educativo"
+      body: |
+        Recursos para usuarios:
+        - Mini-guías sobre fortalezas
+        - Tips de decisiones conscientes
+        - Blog con casos de uso
+        - Videos explicativos
+      labels: ["Q3", "content", "education"]
+      quarter: "Q3 - Escalabilidad y comunidad"
+      priority: "🟢 Medium"
+      effort: "M (1-2 semanas)"
+      category: "👥 Community"
+    
+    # Q4 - Consolidación y expansión
+    - title: "Integraciones con herramientas"
+      body: |
+        Conectar con ecosistema de productividad:
+        - Integración con calendarios (Google, Outlook)
+        - Webhook para Notion
+        - Bot de Slack/Discord
+        - API para Trello
+      labels: ["Q4", "integrations", "api"]
+      quarter: "Q4 - Consolidación y expansión"
+      priority: "🟡 High"
+      effort: "L (3-4 semanas)"
+      category: "🛠️ Tech/Development"
+    
+    - title: "Sistema de gamificación"
+      body: |
+        Elementos de engagement:
+        - Badges por decisiones tomadas
+        - Streaks de reflexión
+        - Niveles de sabiduría
+        - Leaderboard opcional
+      labels: ["Q4", "gamification", "engagement"]
+      quarter: "Q4 - Consolidación y expansión"
+      priority: "🟢 Medium"
+      effort: "M (1-2 semanas)"
+      category: "🎨 Design/UX"
+    
+    - title: "Versión móvil (PWA/React Native)"
+      body: |
+        Experiencia móvil nativa:
+        - PWA optimizada
+        - App con Expo/React Native
+        - Notificaciones push
+        - Sync offline/online
+      labels: ["Q4", "mobile", "pwa"]
+      quarter: "Q4 - Consolidación y expansión"
+      priority: "🟡 High"
+      effort: "XL (1+ mes)"
+      category: "📱 Mobile"
+    
+    - title: "Estrategia de monetización"
+      body: |
+        Modelo de negocio sostenible:
+        - Plan freemium
+        - Consultoría AI especializada
+        - Talleres para empresas
+        - Análisis de pricing
+      labels: ["Q4", "business", "monetization"]
+      quarter: "Q4 - Consolidación y expansión"
+      priority: "🔴 Critical"
+      effort: "M (1-2 semanas)"
+      category: "💰 Business"
+    
+    - title: "Expansión LatAm"
+      body: |
+        Localización regional:
+        - Adaptación cultural México/Perú
+        - Partnerships locales
+        - Marketing regional
+        - Soporte en español neutro
+      labels: ["Q4", "expansion", "latam"]
+      quarter: "Q4 - Consolidación y expansión"
+      priority: "🟢 Medium"
+      effort: "L (3-4 semanas)"
+      category: "💰 Business"
+
+  # Configuración de vistas del proyecto
+  views:
+    - name: "📋 Kanban por Quarter"
+      type: "board"
+      group_by: "Quarter"
+      
+    - name: "📅 Timeline Roadmap"
+      type: "timeline"
+      group_by: "Quarter"
+      
+    - name: "🎯 Por Prioridad"
+      type: "table"
+      group_by: "Priority"
+      sort_by: "Priority"
+      
+    - name: "⚡ Por Esfuerzo"
+      type: "table"
+      group_by: "Effort"
+      
+    - name: "🏷️ Por Categoría"
+      type: "board"
+      group_by: "Category"
+
+# Configuración adicional para automatización
+automation_rules:
+  - name: "Auto-assign Q1 items"
+    trigger: "item_created"
+    condition: "Quarter == 'Q1 - Validación y MVP'"
+    action: "assign_to_current_iteration"
+    
+  - name: "High priority notifications"
+    trigger: "priority_changed"
+    condition: "Priority == '🔴 Critical'"
+    action: "send_notification"
+    
+  - name: "Move completed items"
+    trigger: "status_changed"
+    condition: "Status == 'Done'"
+    action: "move_to_done_column"
+
+# Milestones importantes
+milestones:
+  - name: "🚀 MVP Launch"
+    date: "2025-03-31"
+    description: "Lanzamiento del MVP con funcionalidades básicas"
+    
+  - name: "👥 Private Beta"
+    date: "2025-06-30" 
+    description: "Test cerrado con emprendedores colombianos"
+    
+  - name: "🌍 Public Beta"
+    date: "2025-09-30"
+    description: "Lanzamiento beta abierta al público"
+    
+  - name: "💰 Monetization"
+    date: "2025-12-31"
+    description: "Implementación de modelo de negocio"

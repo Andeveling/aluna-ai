@@ -1,184 +1,294 @@
-<div align="center">
+# 🌙 Aluna AI
 
-# 🛠️ GitHub Tools
+> **Plataforma de IA para toma de decisiones conscientes basada en fortalezas personales y cosmovisión ancestral**
 
-*A comprehensive toolkit for modern development workflows with TypeScript, React, Next.js, and Prisma*
+Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligencia artificial moderna para ayudarte a tomar decisiones más conscientes y alineadas con tus fortalezas naturales.
 
-[![GitHub stars](https://img.shields.io/github/stars/Andeveling/github-tools?style=flat-square)](https://github.com/Andeveling/github-tools)
-[![GitHub issues](https://img.shields.io/github/issues/Andeveling/github-tools?style=flat-square)](https://github.com/Andeveling/github-tools/issues)
-[![License](https://img.shields.io/badge/License-MIT-blue?style=flat-square)](LICENSE)
+---
 
-[Features](#features) • [Getting Started](#getting-started) • [Usage](#usage) • [Examples](#examples) • [Contributing](#contributing)
+## 🌟 **¿Qué es Aluna AI?**
 
-</div>
+**Aluna** (palabra Kogui que significa "pensamiento" o "alma del mundo") es una plataforma que te conecta con tu sabiduría interior mediante:
 
-This repository contains a curated collection of tools, instructions, prompts, and configurations designed to streamline development workflows with modern web technologies. It's built to integrate seamlessly with VS Code Copilot and AI-assisted development environments.
+- **Asistente IA personalizado** que comprende tus fortalezas únicas
+- **Recomendaciones accionables** basadas en tu perfil de fortalezas
+- **Historial de decisiones** para reflexionar sobre tu crecimiento
+- **Enfoque holístico** inspirado en la cosmovisión indígena colombiana
 
-## Features
+## ✨ **Características principales**
 
-- 🎯 **AI-Optimized Instructions** - Load-on-demand instruction files for TypeScript, React, Next.js, Prisma, and Markdown
-- 🤖 **Custom Chat Modes** - Specialized AI assistants for planning, mentoring, code review, and project management
-- 📝 **Smart Prompts** - Ready-to-use prompts for README generation, implementation planning, and GitHub issue creation
-- 🔧 **Issue Templates** - Standardized templates for bug reports, feature requests, and documentation
-- ⚡ **Development Best Practices** - Curated guidelines based on industry experts like Matt Pocock's Total TypeScript
+### 🧠 **Inteligencia Personalizada**
+- Onboarding con test de fortalezas (High5 integration)
+- AI que aprende de tus patrones de decisión
+- Recomendaciones contextualizadas a tu perfil único
 
-## Getting Started
+### 💬 **Asistente Conversacional**
+- Chat intuitivo para consultas sobre decisiones
+- Respuestas estructuradas con pros, contras y próximos pasos
+- Feedback continuo para mejorar la experiencia
 
-### Prerequisites
+### 📊 **Dashboard de Insights**
+- Visualización de tus fortalezas principales
+- Historial de decisiones y su evolución
+- Métricas de claridad y confianza en tus elecciones
 
-- [VS Code](https://code.visualstudio.com/) with GitHub Copilot extension
-- [Node.js](https://nodejs.org/) (LTS version recommended)
-- [Git](https://git-scm.com/)
+### 👥 **Decisiones Colaborativas**
+- Comparar fortalezas en equipos de trabajo
+- Consenso inteligente para decisiones grupales
+- Insights sobre dinámicas de equipo
 
-### Installation
+## 🚀 **Roadmap 2025**
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/Andeveling/github-tools.git
-   cd github-tools
-   ```
+### **Q1 - Validación y MVP** 📅
+- [ ] Setup infraestructura (Next.js 15 + Supabase)
+- [ ] Identidad visual inspirada en cosmovisión Kogui
+- [ ] Asistente AI básico con prompt engineering
+- [ ] Landing page y registro early adopters
+- [ ] Onboarding con fortalezas personales
 
-2. **Copy to your project:**
-   ```bash
-   # Copy the entire .github folder to your project
-   cp -r .github /path/to/your/project/
-   ```
+### **Q2 - Experiencia del Usuario** 🎯
+- [ ] Historial de decisiones por usuario
+- [ ] Recomendaciones estructuradas (3 opciones + pros/contras)
+- [ ] Dashboard simple con visualizaciones
+- [ ] Sistema de feedback post-decisión
+- [ ] Test cerrado con 30 emprendedores colombianos
 
-3. **Or fork this repository** to customize it for your specific needs.
+### **Q3 - Escalabilidad y Comunidad** 🌍
+- [ ] Sistema multi-perfil para equipos
+- [ ] Fine-tuning del modelo AI con datos reales
+- [ ] Analytics avanzado de impacto en decisiones
+- [ ] Lanzamiento beta pública
+- [ ] Contenido educativo sobre fortalezas
 
-## Usage
+### **Q4 - Consolidación y Expansión** 💰
+- [ ] Integraciones (Calendarios, Notion, Slack)
+- [ ] Gamificación con badges y logros
+- [ ] App móvil (PWA + React Native)
+- [ ] Modelo freemium y consultoría especializada
+- [ ] Expansión a México y Perú
 
-### AI-Powered Instructions
+## 🛠️ **Stack Tecnológico**
 
-The instruction files are automatically loaded by VS Code when working with specific file types:
+### **Frontend**
+- **Next.js 15** - Framework React de última generación
+- **TypeScript** - Tipado estático para mayor robustez
+- **Tailwind CSS** - Diseño responsive y moderno
+- **Shadcn/ui** - Componentes accesibles y elegantes
 
-- **TypeScript/JavaScript** (`*.ts`, `*.tsx`, `*.js`, `*.jsx`) - Loads TypeScript best practices
-- **React Components** - Loads React development guidelines
-- **Next.js Projects** - Loads Next.js 2025 best practices
-- **Prisma Schemas** (`*.prisma`) - Loads database and ORM guidelines
-- **Markdown Files** (`*.md`) - Loads documentation standards
+### **Backend & Database**
+- **Supabase** - Backend como servicio con PostgreSQL
+- **Prisma** - ORM type-safe para base de datos
+- **NextAuth.js** - Autenticación segura y flexible
 
-> [!TIP]
-> These instructions are loaded on-demand thanks to VS Code's v1.102+ "Load instruction files on demand" feature.
+### **AI & Analytics**
+- **OpenAI GPT-4** - Motor de inteligencia artificial
+- **Langchain** - Framework para aplicaciones LLM
+- **Vercel Analytics** - Métricas de rendimiento
+- **PostHog** - Analytics de producto y comportamiento
 
-### Custom Chat Modes
+### **DevOps & Deployment**
+- **Vercel** - Deployment y hosting optimizado
+- **GitHub Actions** - CI/CD automatizado
+- **Docker** - Containerización para desarrollo
 
-Access specialized AI assistants through VS Code Chat:
+## 📦 **Instalación y Setup**
 
-- **Planner** - Generate implementation plans and project roadmaps
-- **Mentor** - Get learning guidance and code explanations
-- **PRD** - Create product requirement documents
-- **Janitor** - Code cleanup and refactoring assistance
-- **Beast Mode** - Advanced development assistance with GPT-4.1
+### **Prerrequisitos**
+```bash
+node --version  # v22.0.0+
+npm --version   # v11.0.0+
+```
 
-### Smart Prompts
+### **Clonar el repositorio**
+```bash
+git clone https://github.com/Andeveling/aluna-ai.git
+cd aluna-ai
+```
 
-Use the prompt files for common development tasks:
+### **Instalar dependencias**
+```bash
+pnpm install
+```
+
+### **Variables de entorno**
+Crea un archivo `.env.local` basado en `.env.example`:
 
 ```bash
-# Generate a README for your project
-# Use: .github/prompts/create-readme.prompt.md
+# Database
+DATABASE_URL="postgresql://..."
+DIRECT_URL="postgresql://..."
 
-# Create implementation plans
-# Use: .github/prompts/create-implementation-plan.prompt.md
+# Authentication
+NEXTAUTH_SECRET="your-secret-here"
+NEXTAUTH_URL="http://localhost:3000"
 
-# Generate GitHub issues from specifications
-# Use: .github/prompts/create-github-issues-*.prompt.md
+# AI Services
+OPENAI_API_KEY="sk-..."
+
+# Analytics
+NEXT_PUBLIC_POSTHOG_KEY="phc_..."
+NEXT_PUBLIC_POSTHOG_HOST="https://app.posthog.com"
 ```
 
-## Examples
-
-### Setting Up a New TypeScript Project
-
-1. Copy the `.github` folder to your project
-2. Open your TypeScript files in VS Code
-3. The TypeScript instructions will automatically load, providing:
-   - Strict mode configuration
-   - Branded types patterns
-   - Type safety guidelines
-   - React best practices
-
-### Using Chat Modes for Planning
-
-1. Open VS Code Chat
-2. Select the "Planner" mode
-3. Ask: "Create an implementation plan for a user authentication system"
-4. Get a structured, actionable plan with tasks and priorities
-
-### Creating Standardized Issues
-
-1. Use the issue templates in `.github/ISSUE_TEMPLATE/`
-2. Templates available for:
-   - Bug reports
-   - Feature requests
-   - Documentation updates
-   - Specification implementations
-
-## Project Structure
-
-```
-.github/
-├── instructions/           # AI instruction files (auto-loaded)
-│   ├── typescript.instructions.md
-│   ├── react-best-practices.instructions.md
-│   ├── nextjs-best-practices.instructions.md
-│   ├── prisma.instructions.md
-│   └── markdown-best-practices.instructions.md
-├── chatmodes/             # Custom AI chat assistants
-│   ├── Planner.chatmode.md
-│   ├── Mentor.chatmode.md
-│   ├── PRD.chatmode.md
-│   └── ...
-├── prompts/               # Reusable AI prompts
-│   ├── create-readme.prompt.md
-│   ├── create-implementation-plan.prompt.md
-│   └── ...
-└── ISSUE_TEMPLATE/        # GitHub issue templates
-    ├── bug_report.yml
-    ├── feature_request.yml
-    └── ...
+### **Setup de base de datos**
+```bash
+pnpm dlx prisma generate
+pnpm dlx prisma db push
+pnpm dlx prisma db seed  # Datos de ejemplo
 ```
 
-## Tech Stack Coverage
+### **Ejecutar en desarrollo**
+```bash
+pnpm run dev
+# La aplicación estará disponible en http://localhost:3000
+```
 
-This toolkit provides optimized workflows for:
+## 🧪 **Testing**
 
-- **Frontend**: React, Next.js, TypeScript
-- **Backend**: Node.js, Prisma, PostgreSQL
-- **Tools**: VS Code, GitHub Copilot, Git
-- **Documentation**: Markdown, GitHub Pages
+```bash
+# Tests unitarios
+pnpm run test
 
-## Best Practices Included
+# Tests de integración
+pnpm run test:integration
 
-- **TypeScript**: Based on Matt Pocock's Total TypeScript methodology
-- **React**: Modern hooks, component patterns, and performance optimization
-- **Next.js**: App Router, Server Components, and 2025 best practices
-- **Prisma**: Schema design, security, and performance guidelines
-- **Documentation**: GFM standards and accessibility guidelines
+# Tests end-to-end
+pnpm run test:e2e
 
-## Contributing
+# Coverage
+pnpm run test:coverage
+```
 
-Contributions are welcome! Please feel free to submit a Pull Request. For major changes, please open an issue first to discuss what you would like to change.
+## 📁 **Estructura del Proyecto**
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+```
+aluna-ai/
+├── 📁 app/                     # App Router (Next.js 13+)
+│   ├── 📁 (auth)/             # Rutas de autenticación
+│   ├── 📁 dashboard/          # Panel de usuario
+│   ├── 📁 chat/               # Interfaz del asistente AI
+│   └── 📁 api/                # API Routes
+├── 📁 components/             # Componentes React reutilizables
+│   ├── 📁 ui/                 # Componentes base (shadcn/ui)
+│   ├── 📁 forms/              # Formularios y validaciones
+│   └── 📁 charts/             # Visualizaciones de datos
+├── 📁 lib/                    # Utilidades y configuraciones
+│   ├── 📁 ai/                 # Lógica de IA y prompts
+│   ├── 📁 db/                 # Configuración de base de datos
+│   └── 📁 utils/              # Funciones auxiliares
+├── 📁 prisma/                 # Schema y migraciones de DB
+├── 📁 public/                 # Assets estáticos
+└── 📁 tests/                  # Suite de tests
+```
 
-## Resources
+## 🎨 **Filosofía de Diseño**
 
-- [VS Code Copilot Documentation](https://code.visualstudio.com/docs/copilot)
-- [Total TypeScript by Matt Pocock](https://www.totaltypescript.com/)
-- [Next.js Documentation](https://nextjs.org/docs)
-- [Prisma Documentation](https://www.prisma.io/docs)
+### **Inspiración Kogui**
+- **Colores naturales**: Paleta inspirada en la Sierra Nevada
+- **Formas orgánicas**: Geometría que refleja la naturaleza
+- **Equilibrio**: Balance entre tradición y modernidad
+
+### **Principios UX**
+- **Simplicidad consciente**: Interfaces limpias que facilitan la reflexión
+- **Accesibilidad**: Diseño inclusivo para todos los usuarios
+- **Retroalimentación**: Comunicación clara del estado del sistema
+
+## 🤝 **Contribuir al Proyecto**
+
+¡Nos encanta recibir contribuciones! Aquí te explicamos cómo participar:
+
+### **1. Fork del repositorio**
+```bash
+# Crear fork en GitHub, luego:
+git clone https://github.com/tu-usuario/aluna-ai.git
+cd aluna-ai
+git remote add upstream https://github.com/Andeveling/aluna-ai.git
+```
+
+### **2. Crear rama para tu feature**
+```bash
+git checkout -b feature/nueva-funcionalidad
+# o
+git checkout -b fix/corregir-bug
+```
+
+### **3. Desarrollar y testear**
+```bash
+# Hacer tus cambios
+pnpm run test      # Verificar que pasen los tests
+pnpm run lint      # Revisar código
+pnpm run build     # Verificar que compile
+```
+
+### **4. Commit siguiendo convenciones**
+```bash
+git commit -m "feat: agregar dashboard de fortalezas"
+git commit -m "fix: corregir error en chat AI"
+git commit -m "docs: actualizar README con nuevas instrucciones"
+```
+
+### **5. Pull Request**
+- Abre un PR describiendo los cambios
+- Incluye screenshots si hay cambios visuales
+- Referencia issues relacionados
+
+### **Tipos de contribuciones bienvenidas:**
+- 🐛 **Bug fixes**
+- ✨ **Nuevas features**
+- 📚 **Mejoras en documentación**
+- 🎨 **Mejoras de diseño/UX**
+- 🧪 **Tests adicionales**
+- 🌍 **Traducciones**
+
+## 📄 **Licencia**
+
+Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
+
+## 🙏 **Agradecimientos**
+
+### **Inspiración Cultural**
+- **Pueblo Kogui** - Por su sabiduría ancestral y visión holística del mundo
+- **Sierra Nevada de Santa Marta** - Territorio sagrado que inspira nuestro diseño
+
+### **Comunidad Técnica**
+- **Next.js Team** - Por el framework que potencia nuestra aplicación
+- **Vercel** - Por la infraestructura de deployment
+- **Supabase** - Por simplificar nuestro backend
+- **OpenAI** - Por democratizar el acceso a IA avanzada
+
+### **Early Adopters**
+Gracias a todos los emprendedores colombianos que están probando Aluna AI en sus primeras versiones y compartiendo feedback valioso.
+
+## 📞 **Contacto y Soporte**
+
+### **Creador**
+- **GitHub**: [@Andeveling](https://github.com/Andeveling)
+- **Email**: contacto@aluna-ai.com
+- **LinkedIn**: [Perfil del fundador]
+
+### **Comunidad**
+- **Discord**: [Servidor de la comunidad]
+- **Twitter**: [@AlunaAI_co]
+- **Blog**: [blog.aluna-ai.com]
+
+### **Soporte Técnico**
+- **Issues**: [GitHub Issues](https://github.com/Andeveling/aluna-ai/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Andeveling/aluna-ai/discussions)
+- **Wiki**: [Documentación técnica](https://github.com/Andeveling/aluna-ai/wiki)
+
+---
+
+## 🌱 **Únete a la Revolución de las Decisiones Conscientes**
+
+Aluna AI no es solo una herramienta tecnológica, es un puente entre la sabiduría ancestral y las posibilidades del futuro. Te invitamos a ser parte de esta comunidad que busca tomar decisiones más conscientes, auténticas y alineadas con nuestras fortalezas naturales.
+
+**¿Listo para conectar con tu Aluna interior?** 
+
+[🚀 **Probar Demo**](https://aluna-ai.vercel.app) | [📧 **Newsletter**](https://aluna-ai.com/newsletter) | [💬 **Discord**](https://discord.gg/aluna-ai)
 
 ---
 
 <div align="center">
-
-Made with ❤️ for modern development workflows
-
-[⭐ Star this repo](https://github.com/Andeveling/github-tools) if you find it useful!
-
+  <sub>Hecho con 💜 desde Colombia para el mundo</sub><br>
+  <sub>Inspirado en la sabiduría Kogui • Potenciado por IA moderna</sub>
 </div>
