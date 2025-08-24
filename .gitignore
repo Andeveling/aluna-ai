@@ -1,0 +1,3 @@
+# Aluna AI ignore
+.env
+node_modules

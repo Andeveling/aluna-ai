@@ -1,0 +1,89 @@
+name: Infraestructura base
+description: Template para tareas de infraestructura (setup, configuración, CI/CD, etc.)
+title: "[Infra] {Título descriptivo}"
+labels: [infra, P0, S, Backlog]
+assignees:
+  - Andeveling
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## Objetivo
+        Describe brevemente el objetivo de la tarea de infraestructura.
+
+  - type: checkboxes
+    id: acceptance
+    attributes:
+      label: Criterios de aceptación
+      description: Marca los criterios que deben cumplirse para considerar la tarea completada.
+      options:
+        - label: Proyecto Next.js inicializado con TypeScript y estructura recomendada
+        - label: TailwindCSS + Shadcn configurados
+        - label: Supabase conectado y base de datos lista
+        - label: Prisma integrado y primer esquema generado
+        - label: Variables de entorno y archivos `.env` configurados
+        - label: Conexión local y remota verificada
+        - label: Setup documentado en README
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notas técnicas
+      description: Detalla consideraciones técnicas, dependencias o riesgos.
+      placeholder: |
+        - Usar pnpm como gestor de paquetes
+        - Compatibilidad con Vercel
+        - Scripts para migraciones y seed
+
+  - type: dropdown
+    id: status
+    attributes:
+      label: Status
+      options:
+        - Backlog
+        - Ready
+        - In Progress
+        - Done
+    validations:
+      required: true
+
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      options:
+        - P0
+        - P1
+        - P2
+    validations:
+      required: true
+
+  - type: input
+    id: size
+    attributes:
+      label: Size
+      description: Tamaño estimado de la tarea (S, M, L, XL)
+      placeholder: S
+    validations:
+      required: true
+
+  - type: input
+    id: estimate
+    attributes:
+      label: Estimate
+      description: Estimación en puntos o horas
+      placeholder: 5
+    validations:
+      required: true
+
+  - type: input
+    id: start_date
+    attributes:
+      label: Start date
+      placeholder: Aug 24, 2025
+
+  - type: input
+    id: end_date
+    attributes:
+      label: End date
+      placeholder: Aug 25, 2025
