@@ -44,3 +44,5 @@ next-env.d.ts
 backup-original/
 .gitignore.original
 .gitignore.nextjs
+
+/lib/generated/prisma-client
