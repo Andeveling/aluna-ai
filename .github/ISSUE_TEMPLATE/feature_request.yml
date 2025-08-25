@@ -1,8 +1,8 @@
 name: 🚀 Feature Request
 description: Suggest a new feature or enhancement for this project
-title: "[Feature]: "
-labels: ["feature", "enhancement", "triage"]
-projects: ["octo-org/1"]
+title: '[Feature]: '
+labels: ['feature', 'enhancement', 'triage']
+projects: ['octo-org/1']
 assignees:
   - octocat
 body:
@@ -16,7 +16,7 @@ body:
     attributes:
       label: Feature Description
       description: A clear and concise description of what you want to happen.
-      placeholder: "I would like to see..."
+      placeholder: 'I would like to see...'
     validations:
       required: true
 
@@ -25,7 +25,7 @@ body:
     attributes:
       label: Problem Statement
       description: What problem does this feature solve? What is the motivation behind this request?
-      placeholder: "This would help with..."
+      placeholder: 'This would help with...'
     validations:
       required: true
 
@@ -34,7 +34,7 @@ body:
     attributes:
       label: Proposed Solution
       description: Describe the solution you'd like to see implemented.
-      placeholder: "A possible solution could be..."
+      placeholder: 'A possible solution could be...'
     validations:
       required: true
 
@@ -79,7 +79,7 @@ body:
     attributes:
       label: Additional Context
       description: Add any other context, mockups, or examples about the feature request.
-      placeholder: "Any additional information that might be helpful..."
+      placeholder: 'Any additional information that might be helpful...'
 
   - type: checkboxes
     id: terms

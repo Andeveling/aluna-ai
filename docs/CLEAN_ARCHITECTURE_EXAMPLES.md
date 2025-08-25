@@ -5,6 +5,7 @@
 ### 1. Gestión de Usuarios y Autenticación
 
 #### Modelo de Usuario
+
 ```typescript
 // src/entities/models/user.ts
 import { z } from 'zod';
@@ -22,18 +23,21 @@ export const userSchema = z.object({
 
 export type User = z.infer<typeof userSchema>;
 
-export const createUserSchema = userSchema.pick({
-  email: true,
-  name: true,
-  role: true,
-}).extend({
-  password: z.string().min(8).max(100),
-});
+export const createUserSchema = userSchema
+  .pick({
+    email: true,
+    name: true,
+    role: true,
+  })
+  .extend({
+    password: z.string().min(8).max(100),
+  });
 
 export type CreateUser = z.infer<typeof createUserSchema>;
 ```
 
 #### Use Case: Crear Usuario
+
 ```typescript
 // src/application/use-cases/users/create-user.use-case.ts
 import { ConflictError } from '@/src/entities/errors/common';
@@ -48,7 +52,7 @@ export const createUserUseCase =
   (
     instrumentationService: IInstrumentationService,
     usersRepository: IUsersRepository,
-    authenticationService: IAuthenticationService
+    authenticationService: IAuthenticationService,
   ) =>
   async (input: CreateUser): Promise<User> => {
     return await instrumentationService.startSpan(
@@ -70,7 +74,7 @@ export const createUserUseCase =
         });
 
         return newUser;
-      }
+      },
     );
   };
 ```
@@ -78,6 +82,7 @@ export const createUserUseCase =
 ### 2. Sistema de Cursos
 
 #### Modelos de Curso
+
 ```typescript
 // src/entities/models/course.ts
 import { z } from 'zod';
@@ -127,6 +132,7 @@ export type Lesson = z.infer<typeof lessonSchema>;
 ```
 
 #### Use Case: Crear Curso
+
 ```typescript
 // src/application/use-cases/courses/create-course.use-case.ts
 import { UnauthorizedError } from '@/src/entities/errors/auth';
@@ -142,7 +148,7 @@ export const createCourseUseCase =
   (
     instrumentationService: IInstrumentationService,
     coursesRepository: ICoursesRepository,
-    usersRepository: IUsersRepository
+    usersRepository: IUsersRepository,
   ) =>
   async (input: CreateCourse, userId: string): Promise<Course> => {
     return await instrumentationService.startSpan(
@@ -153,7 +159,7 @@ export const createCourseUseCase =
         if (!user) {
           throw new UnauthorizedError('User not found');
         }
-        
+
         if (user.role !== 'instructor' && user.role !== 'admin') {
           throw new UnauthorizedError('Only instructors can create courses');
         }
@@ -174,7 +180,7 @@ export const createCourseUseCase =
         });
 
         return course;
-      }
+      },
     );
   };
 ```
@@ -182,6 +188,7 @@ export const createCourseUseCase =
 ### 3. Sistema de Inscripciones
 
 #### Modelo de Inscripción
+
 ```typescript
 // src/entities/models/enrollment.ts
 import { z } from 'zod';
@@ -208,6 +215,7 @@ export type CreateEnrollment = z.infer<typeof createEnrollmentSchema>;
 ```
 
 #### Use Case: Inscribir Usuario
+
 ```typescript
 // src/application/use-cases/enrollments/enroll-user.use-case.ts
 import { ConflictError, NotFoundError } from '@/src/entities/errors/common';
@@ -224,12 +232,9 @@ export const enrollUserUseCase =
     instrumentationService: IInstrumentationService,
     enrollmentsRepository: IEnrollmentsRepository,
     coursesRepository: ICoursesRepository,
-    paymentService: IPaymentService
+    paymentService: IPaymentService,
   ) =>
-  async (
-    input: CreateEnrollment,
-    paymentMethodId?: string
-  ): Promise<Enrollment> => {
+  async (input: CreateEnrollment, paymentMethodId?: string): Promise<Enrollment> => {
     return await instrumentationService.startSpan(
       { name: 'enrollUser Use Case', op: 'function' },
       async () => {
@@ -246,9 +251,9 @@ export const enrollUserUseCase =
         // Verificar si ya está inscrito
         const existingEnrollment = await enrollmentsRepository.getEnrollment(
           input.userId,
-          input.courseId
+          input.courseId,
         );
-        
+
         if (existingEnrollment) {
           throw new ConflictError('User is already enrolled in this course');
         }
@@ -275,7 +280,7 @@ export const enrollUserUseCase =
         const enrollment = await enrollmentsRepository.createEnrollment(input);
 
         return enrollment;
-      }
+      },
     );
   };
 ```
@@ -283,6 +288,7 @@ export const enrollUserUseCase =
 ### 4. Sistema de Progreso y Completación
 
 #### Use Case: Actualizar Progreso
+
 ```typescript
 // src/application/use-cases/progress/update-lesson-progress.use-case.ts
 import { NotFoundError } from '@/src/entities/errors/common';
@@ -298,13 +304,9 @@ export const updateLessonProgressUseCase =
     instrumentationService: IInstrumentationService,
     progressRepository: IProgressRepository,
     enrollmentsRepository: IEnrollmentsRepository,
-    lessonsRepository: ILessonsRepository
+    lessonsRepository: ILessonsRepository,
   ) =>
-  async (
-    lessonId: string,
-    userId: string,
-    completedPercentage: number
-  ): Promise<void> => {
+  async (lessonId: string, userId: string, completedPercentage: number): Promise<void> => {
     return await instrumentationService.startSpan(
       { name: 'updateLessonProgress Use Case', op: 'function' },
       async () => {
@@ -315,11 +317,8 @@ export const updateLessonProgressUseCase =
         }
 
         // Verificar que el usuario está inscrito en el curso
-        const enrollment = await enrollmentsRepository.getEnrollment(
-          userId,
-          lesson.courseId
-        );
-        
+        const enrollment = await enrollmentsRepository.getEnrollment(userId, lesson.courseId);
+
         if (!enrollment || enrollment.status !== 'active') {
           throw new UnauthorizedError('User is not enrolled in this course');
         }
@@ -335,19 +334,16 @@ export const updateLessonProgressUseCase =
         // Calcular y actualizar progreso general del curso
         const overallProgress = await progressRepository.calculateCourseProgress(
           userId,
-          lesson.courseId
+          lesson.courseId,
         );
 
-        await enrollmentsRepository.updateProgress(
-          enrollment.id,
-          overallProgress
-        );
+        await enrollmentsRepository.updateProgress(enrollment.id, overallProgress);
 
         // Si el curso está completado, marcar la inscripción como completada
         if (overallProgress >= 100) {
           await enrollmentsRepository.markAsCompleted(enrollment.id);
         }
-      }
+      },
     );
   };
 ```
@@ -355,6 +351,7 @@ export const updateLessonProgressUseCase =
 ## 🔧 Configuración de Inyección de Dependencias
 
 ### Módulo de Cursos
+
 ```typescript
 // di/modules/courses.module.ts
 import { createModule } from '@evyweb/ioctopus';
@@ -427,6 +424,7 @@ export function createCoursesModule() {
 ## 🧪 Ejemplos de Testing
 
 ### Test de Use Case con Mocks
+
 ```typescript
 // tests/unit/application/use-cases/courses/create-course.use-case.test.ts
 import { expect, it, beforeEach } from 'vitest';
@@ -489,13 +487,12 @@ it('throws error when user is student', async () => {
     level: 'beginner' as const,
   };
 
-  await expect(
-    createCourseUseCase(courseData, student.id)
-  ).rejects.toThrow(UnauthorizedError);
+  await expect(createCourseUseCase(courseData, student.id)).rejects.toThrow(UnauthorizedError);
 });
 ```
 
 ### Test de Controlador
+
 ```typescript
 // tests/unit/interface-adapters/controllers/courses/create-course.controller.test.ts
 import { expect, it } from 'vitest';
@@ -549,15 +546,16 @@ it('throws error with invalid input', async () => {
     description: 'Description',
   };
 
-  await expect(
-    createCourseController(invalidCourseData, session.id)
-  ).rejects.toThrow(InputParseError);
+  await expect(createCourseController(invalidCourseData, session.id)).rejects.toThrow(
+    InputParseError,
+  );
 });
 ```
 
 ## 📱 Integración con Server Actions
 
 ### Server Actions para Cursos
+
 ```typescript
 // app/(dashboard)/courses/actions.ts
 'use server';
@@ -567,18 +565,12 @@ import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 import { SESSION_COOKIE } from '@/config';
 import { getInjection } from '@/di/container';
-import { 
-  UnauthenticatedError,
-  UnauthorizedError 
-} from '@/src/entities/errors/auth';
-import { 
-  InputParseError,
-  NotFoundError 
-} from '@/src/entities/errors/common';
+import { UnauthenticatedError, UnauthorizedError } from '@/src/entities/errors/auth';
+import { InputParseError, NotFoundError } from '@/src/entities/errors/common';
 
 export async function createCourse(formData: FormData) {
   const instrumentationService = getInjection('IInstrumentationService');
-  
+
   return await instrumentationService.instrumentServerAction(
     'createCourse',
     { recordResponse: true },
@@ -586,13 +578,12 @@ export async function createCourse(formData: FormData) {
       try {
         const data = Object.fromEntries(formData.entries());
         const sessionId = cookies().get(SESSION_COOKIE)?.value;
-        
+
         const createCourseController = getInjection('ICreateCourseController');
         const course = await createCourseController(data, sessionId);
-        
+
         revalidatePath('/dashboard/courses');
         return { success: true, courseId: course.id };
-        
       } catch (err) {
         if (err instanceof InputParseError) {
           return { error: err.message };
@@ -603,15 +594,15 @@ export async function createCourse(formData: FormData) {
         if (err instanceof UnauthorizedError) {
           return { error: 'Only instructors can create courses' };
         }
-        
+
         const crashReporterService = getInjection('ICrashReporterService');
         crashReporterService.report(err);
-        
+
         return {
           error: 'An error occurred while creating the course. Please try again.',
         };
       }
-    }
+    },
   );
 }
 
@@ -619,15 +610,17 @@ export async function enrollInCourse(courseId: string, paymentMethodId?: string)
   try {
     const sessionId = cookies().get(SESSION_COOKIE)?.value;
     const enrollUserController = getInjection('IEnrollUserController');
-    
-    await enrollUserController({
-      courseId,
-      paymentMethodId,
-    }, sessionId);
-    
+
+    await enrollUserController(
+      {
+        courseId,
+        paymentMethodId,
+      },
+      sessionId,
+    );
+
     revalidatePath('/dashboard/my-courses');
     redirect('/dashboard/my-courses');
-    
   } catch (err) {
     // Manejo de errores similar
   }
@@ -637,6 +630,7 @@ export async function enrollInCourse(courseId: string, paymentMethodId?: string)
 ## 🎨 Componentes React Limpios
 
 ### Componente de Lista de Cursos
+
 ```typescript
 // app/(dashboard)/courses/page.tsx
 import { getInjection } from '@/di/container';
@@ -660,7 +654,7 @@ export default async function CoursesPage() {
         <h1 className="text-3xl font-bold">Courses</h1>
         <CreateCourseButton />
       </div>
-      
+
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {courses.map((course) => (
           <CourseCard key={course.id} course={course} />

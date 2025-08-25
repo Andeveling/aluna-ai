@@ -18,21 +18,25 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 ## ✨ **Características principales**
 
 ### 🧠 **Inteligencia Personalizada**
+
 - Onboarding con test de fortalezas (High5 integration)
 - AI que aprende de tus patrones de decisión
 - Recomendaciones contextualizadas a tu perfil único
 
 ### 💬 **Asistente Conversacional**
+
 - Chat intuitivo para consultas sobre decisiones
 - Respuestas estructuradas con pros, contras y próximos pasos
 - Feedback continuo para mejorar la experiencia
 
 ### 📊 **Dashboard de Insights**
+
 - Visualización de tus fortalezas principales
 - Historial de decisiones y su evolución
 - Métricas de claridad y confianza en tus elecciones
 
 ### 👥 **Decisiones Colaborativas**
+
 - Comparar fortalezas en equipos de trabajo
 - Consenso inteligente para decisiones grupales
 - Insights sobre dinámicas de equipo
@@ -40,6 +44,7 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 ## 🚀 **Roadmap 2025**
 
 ### **Q1 - Validación y MVP** 📅
+
 - [ ] Setup infraestructura (Next.js 15 + Supabase)
 - [ ] Identidad visual inspirada en cosmovisión Kogui
 - [ ] Asistente AI básico con prompt engineering
@@ -47,6 +52,7 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 - [ ] Onboarding con fortalezas personales
 
 ### **Q2 - Experiencia del Usuario** 🎯
+
 - [ ] Historial de decisiones por usuario
 - [ ] Recomendaciones estructuradas (3 opciones + pros/contras)
 - [ ] Dashboard simple con visualizaciones
@@ -54,6 +60,7 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 - [ ] Test cerrado con 30 emprendedores colombianos
 
 ### **Q3 - Escalabilidad y Comunidad** 🌍
+
 - [ ] Sistema multi-perfil para equipos
 - [ ] Fine-tuning del modelo AI con datos reales
 - [ ] Analytics avanzado de impacto en decisiones
@@ -61,6 +68,7 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 - [ ] Contenido educativo sobre fortalezas
 
 ### **Q4 - Consolidación y Expansión** 💰
+
 - [ ] Integraciones (Calendarios, Notion, Slack)
 - [ ] Gamificación con badges y logros
 - [ ] App móvil (PWA + React Native)
@@ -70,23 +78,27 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 ## 🛠️ **Stack Tecnológico**
 
 ### **Frontend**
+
 - **Next.js 15** - Framework React de última generación
 - **TypeScript** - Tipado estático para mayor robustez
 - **Tailwind CSS** - Diseño responsive y moderno
 - **Shadcn/ui** - Componentes accesibles y elegantes
 
 ### **Backend & Database**
+
 - **Supabase** - Backend como servicio con PostgreSQL
 - **Prisma** - ORM type-safe para base de datos
 - **NextAuth.js** - Autenticación segura y flexible
 
 ### **AI & Analytics**
+
 - **OpenAI GPT-4** - Motor de inteligencia artificial
 - **Langchain** - Framework para aplicaciones LLM
 - **Vercel Analytics** - Métricas de rendimiento
 - **PostHog** - Analytics de producto y comportamiento
 
 ### **DevOps & Deployment**
+
 - **Vercel** - Deployment y hosting optimizado
 - **GitHub Actions** - CI/CD automatizado
 - **Docker** - Containerización para desarrollo
@@ -94,23 +106,27 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 ## 📦 **Instalación y Setup**
 
 ### **Prerrequisitos**
+
 ```bash
 node --version  # v22.0.0+
 npm --version   # v11.0.0+
 ```
 
 ### **Clonar el repositorio**
+
 ```bash
 git clone https://github.com/Andeveling/aluna-ai.git
 cd aluna-ai
 ```
 
 ### **Instalar dependencias**
+
 ```bash
 pnpm install
 ```
 
 ### **Variables de entorno**
+
 Crea un archivo `.env.local` basado en `.env.example`:
 
 ```bash
@@ -131,6 +147,7 @@ NEXT_PUBLIC_POSTHOG_HOST="https://app.posthog.com"
 ```
 
 ### **Setup de base de datos**
+
 ```bash
 pnpm dlx prisma generate
 pnpm dlx prisma db push
@@ -138,6 +155,7 @@ pnpm dlx prisma db seed  # Datos de ejemplo
 ```
 
 ### **Ejecutar en desarrollo**
+
 ```bash
 pnpm run dev
 # La aplicación estará disponible en http://localhost:3000
@@ -196,11 +214,13 @@ Esto se alinea con la descripción del proyecto, donde se destaca el enfoque en 
 ## �🎨 **Filosofía de Diseño**
 
 ### **Inspiración Kogui**
+
 - **Colores naturales**: Paleta inspirada en la Sierra Nevada
 - **Formas orgánicas**: Geometría que refleja la naturaleza
 - **Equilibrio**: Balance entre tradición y modernidad
 
 ### **Principios UX**
+
 - **Simplicidad consciente**: Interfaces limpias que facilitan la reflexión
 - **Accesibilidad**: Diseño inclusivo para todos los usuarios
 - **Retroalimentación**: Comunicación clara del estado del sistema
@@ -210,6 +230,7 @@ Esto se alinea con la descripción del proyecto, donde se destaca el enfoque en 
 ¡Nos encanta recibir contribuciones! Aquí te explicamos cómo participar:
 
 ### **1. Fork del repositorio**
+
 ```bash
 # Crear fork en GitHub, luego:
 git clone https://github.com/tu-usuario/aluna-ai.git
@@ -218,6 +239,7 @@ git remote add upstream https://github.com/Andeveling/aluna-ai.git
 ```
 
 ### **2. Crear rama para tu feature**
+
 ```bash
 git checkout -b feature/nueva-funcionalidad
 # o
@@ -225,6 +247,7 @@ git checkout -b fix/corregir-bug
 ```
 
 ### **3. Desarrollar y testear**
+
 ```bash
 # Hacer tus cambios
 pnpm run test      # Verificar que pasen los tests
@@ -233,6 +256,7 @@ pnpm run build     # Verificar que compile
 ```
 
 ### **4. Commit siguiendo convenciones**
+
 ```bash
 git commit -m "feat: agregar dashboard de fortalezas"
 git commit -m "fix: corregir error en chat AI"
@@ -240,11 +264,13 @@ git commit -m "docs: actualizar README con nuevas instrucciones"
 ```
 
 ### **5. Pull Request**
+
 - Abre un PR describiendo los cambios
 - Incluye screenshots si hay cambios visuales
 - Referencia issues relacionados
 
 ### **Tipos de contribuciones bienvenidas:**
+
 - 🐛 **Bug fixes**
 - ✨ **Nuevas features**
 - 📚 **Mejoras en documentación**
@@ -259,31 +285,37 @@ Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detal
 ## 🙏 **Agradecimientos**
 
 ### **Inspiración Cultural**
+
 - **Pueblo Kogui** - Por su sabiduría ancestral y visión holística del mundo
 - **Sierra Nevada de Santa Marta** - Territorio sagrado que inspira nuestro diseño
 
 ### **Comunidad Técnica**
+
 - **Next.js Team** - Por el framework que potencia nuestra aplicación
 - **Vercel** - Por la infraestructura de deployment
 - **Supabase** - Por simplificar nuestro backend
 - **OpenAI** - Por democratizar el acceso a IA avanzada
 
 ### **Early Adopters**
+
 Gracias a todos los emprendedores colombianos que están probando Aluna AI en sus primeras versiones y compartiendo feedback valioso.
 
 ## 📞 **Contacto y Soporte**
 
 ### **Creador**
+
 - **GitHub**: [@Andeveling](https://github.com/Andeveling)
 - **Email**: contacto@aluna-ai.com
 - **LinkedIn**: [Perfil del fundador]
 
 ### **Comunidad**
+
 - **Discord**: [Servidor de la comunidad]
 - **Twitter**: [@AlunaAI_co]
 - **Blog**: [blog.aluna-ai.com]
 
 ### **Soporte Técnico**
+
 - **Issues**: [GitHub Issues](https://github.com/Andeveling/aluna-ai/issues)
 - **Discussions**: [GitHub Discussions](https://github.com/Andeveling/aluna-ai/discussions)
 - **Wiki**: [Documentación técnica](https://github.com/Andeveling/aluna-ai/wiki)
@@ -294,7 +326,7 @@ Gracias a todos los emprendedores colombianos que están probando Aluna AI en su
 
 Aluna AI no es solo una herramienta tecnológica, es un puente entre la sabiduría ancestral y las posibilidades del futuro. Te invitamos a ser parte de esta comunidad que busca tomar decisiones más conscientes, auténticas y alineadas con nuestras fortalezas naturales.
 
-**¿Listo para conectar con tu Aluna interior?** 
+**¿Listo para conectar con tu Aluna interior?**
 
 [🚀 **Probar Demo**](https://aluna-ai.vercel.app) | [📧 **Newsletter**](https://aluna-ai.com/newsletter) | [💬 **Discord**](https://discord.gg/aluna-ai)
 

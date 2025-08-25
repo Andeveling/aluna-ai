@@ -1,7 +1,7 @@
 name: 📋 Specification Implementation
 description: Create an issue to implement a feature from a specification file
-title: "[Spec]: Implement ${feature_name}"
-labels: ["specification", "implementation", "feature"]
+title: '[Spec]: Implement ${feature_name}'
+labels: ['specification', 'implementation', 'feature']
 body:
   - type: markdown
     attributes:
@@ -13,7 +13,7 @@ body:
     attributes:
       label: Specification File
       description: Path to the specification file
-      placeholder: "docs/specs/feature-name.md"
+      placeholder: 'docs/specs/feature-name.md'
     validations:
       required: true
 
@@ -22,7 +22,7 @@ body:
     attributes:
       label: Feature Overview
       description: Brief overview of the feature from the specification
-      placeholder: "This feature implements..."
+      placeholder: 'This feature implements...'
     validations:
       required: true
 
@@ -57,7 +57,7 @@ body:
     attributes:
       label: Technical Approach
       description: High-level technical approach for implementation
-      placeholder: "This will be implemented by..."
+      placeholder: 'This will be implemented by...'
 
   - type: dropdown
     id: complexity

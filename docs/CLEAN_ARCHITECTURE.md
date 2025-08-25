@@ -1,6 +1,7 @@
 # Arquitectura Limpia en Next.js - Guía para Aluna AI
 
 ## 📋 Índice
+
 1. [Introducción a Clean Architecture](#introducción-a-clean-architecture)
 2. [Principios Fundamentales](#principios-fundamentales)
 3. [Estructura del Proyecto](#estructura-del-proyecto)
@@ -52,14 +53,17 @@ Clean Architecture es un conjunto de reglas que nos ayudan a estructurar aplicac
 ## 🔧 Principios Fundamentales
 
 ### 1. Regla de Dependencia
+
 Las capas solo pueden depender de capas **inferiores**, nunca de capas superiores.
 
 ### 2. Principio de Inversión de Dependencias
+
 - Las interfaces se definen en la capa `application`
 - Las implementaciones se definen en la capa `infrastructure`
 - Se usa inyección de dependencias para conectarlas
 
 ### 3. Separación de Responsabilidades
+
 Cada capa tiene una responsabilidad específica y bien definida.
 
 ## 📁 Estructura del Proyecto
@@ -94,28 +98,34 @@ proyecto/
 ## 🏛️ Explicación de las Capas
 
 ### 1. Frameworks & Drivers (app/)
+
 **Propósito**: Contiene todo lo relacionado con Next.js y la interfaz de usuario.
 
 **Responsabilidades**:
+
 - Componentes React (Server y Client)
 - Server Actions
 - Páginas y rutas
 - Sistema de diseño/UI
 
 **Restricciones**:
+
 - Solo puede usar Controllers, Models y Errors
 - NO puede usar Use Cases, Repositories o Services directamente
 
 ### 2. Interface Adapters (src/interface-adapters/)
+
 **Propósito**: Define los controladores que sirven como punto de entrada al sistema.
 
 **Responsabilidades**:
+
 - Validación de entrada (input validation)
 - Verificación de autenticación
 - Orquestación de Use Cases
 - Formateo de respuestas (Presenters)
 
 **Ejemplo de Controlador**:
+
 ```typescript
 // src/interface-adapters/controllers/todos/create-todo.controller.ts
 export const createTodoController =
@@ -123,72 +133,70 @@ export const createTodoController =
     instrumentationService: IInstrumentationService,
     authenticationService: IAuthenticationService,
     transactionManagerService: ITransactionManagerService,
-    createTodoUseCase: ICreateTodoUseCase
+    createTodoUseCase: ICreateTodoUseCase,
   ) =>
-  async (
-    input: Partial<{ todo: string }>,
-    sessionId: string | undefined
-  ): Promise<Todo[]> => {
+  async (input: Partial<{ todo: string }>, sessionId: string | undefined): Promise<Todo[]> => {
     // 1. Verificar autenticación
     if (!sessionId) {
       throw new UnauthenticatedError('Must be logged in');
     }
-    
+
     // 2. Validar sesión
     const { user } = await authenticationService.validateSession(sessionId);
-    
+
     // 3. Validar entrada
     const { data, error } = inputSchema.safeParse(input);
     if (error) {
       throw new InputParseError('Invalid data');
     }
-    
+
     // 4. Ejecutar caso de uso
     const todos = await createTodoUseCase(data, user.id);
-    
+
     // 5. Formatear respuesta
     return presenter(todos);
   };
 ```
 
 ### 3. Application (src/application/)
+
 **Propósito**: Contiene la lógica de negocio y define las interfaces.
 
 #### Use Cases
+
 **Características**:
+
 - Representan operaciones individuales del negocio
 - Reciben entrada pre-validada de los controladores
 - Manejan verificaciones de autorización
 - NO deben usar otros use cases
 
 **Ejemplo de Use Case**:
+
 ```typescript
 // src/application/use-cases/todos/create-todo.use-case.ts
 export const createTodoUseCase =
-  (
-    instrumentationService: IInstrumentationService,
-    todosRepository: ITodosRepository
-  ) =>
-  async (
-    input: { todo: string },
-    userId: string,
-    tx?: Transaction
-  ): Promise<Todo> => {
+  (instrumentationService: IInstrumentationService, todosRepository: ITodosRepository) =>
+  async (input: { todo: string }, userId: string, tx?: Transaction): Promise<Todo> => {
     // Lógica de negocio
     if (input.todo.length < 4) {
       throw new InputParseError('Todo must be at least 4 chars');
     }
 
     // Crear el todo
-    return await todosRepository.createTodo({
-      todo: input.todo,
-      userId,
-      completed: false,
-    }, tx);
+    return await todosRepository.createTodo(
+      {
+        todo: input.todo,
+        userId,
+        completed: false,
+      },
+      tx,
+    );
   };
 ```
 
 #### Interfaces
+
 **Propósito**: Definir contratos para repositorios y servicios.
 
 ```typescript
@@ -203,9 +211,11 @@ export interface ITodosRepository {
 ```
 
 ### 4. Entities (src/entities/)
+
 **Propósito**: Define los modelos de dominio y errores personalizados.
 
 #### Models
+
 ```typescript
 // src/entities/models/todo.ts
 import { z } from 'zod';
@@ -229,6 +239,7 @@ export type TodoInsert = z.infer<typeof insertTodoSchema>;
 ```
 
 #### Errors
+
 ```typescript
 // src/entities/errors/auth.ts
 export class UnauthenticatedError extends Error {
@@ -247,23 +258,25 @@ export class UnauthorizedError extends Error {
 ```
 
 ### 5. Infrastructure (src/infrastructure/)
+
 **Propósito**: Implementa las interfaces definidas en la capa Application.
 
 #### Repositories
+
 ```typescript
 // src/infrastructure/repositories/todos.repository.ts
 export class TodosRepository implements ITodosRepository {
   constructor(
     private readonly instrumentationService: IInstrumentationService,
-    private readonly crashReporterService: ICrashReporterService
+    private readonly crashReporterService: ICrashReporterService,
   ) {}
 
   async createTodo(todo: TodoInsert, tx?: Transaction): Promise<Todo> {
     const invoker = tx ?? db;
-    
+
     const query = invoker.insert(todos).values(todo).returning();
     const [created] = await query.execute();
-    
+
     if (created) {
       return created;
     } else {
@@ -276,6 +289,7 @@ export class TodosRepository implements ITodosRepository {
 ```
 
 #### Services
+
 ```typescript
 // src/infrastructure/services/authentication.service.ts
 export class AuthenticationService implements IAuthenticationService {
@@ -296,23 +310,25 @@ export class AuthenticationService implements IAuthenticationService {
 ### Inyección de Dependencias
 
 **1. Definir Símbolos** (`di/types.ts`):
+
 ```typescript
 export const DI_SYMBOLS = {
   // Services
   IAuthenticationService: Symbol.for('IAuthenticationService'),
-  
+
   // Repositories
   ITodosRepository: Symbol.for('ITodosRepository'),
-  
+
   // Use Cases
   ICreateTodoUseCase: Symbol.for('ICreateTodoUseCase'),
-  
+
   // Controllers
   ICreateTodoController: Symbol.for('ICreateTodoController'),
 };
 ```
 
 **2. Crear Módulos** (`di/modules/todos.module.ts`):
+
 ```typescript
 export function createTodosModule() {
   const todosModule = createModule();
@@ -348,6 +364,7 @@ export function createTodosModule() {
 ```
 
 **3. Configurar Contenedor** (`di/container.ts`):
+
 ```typescript
 import { createContainer } from '@evyweb/ioctopus';
 
@@ -355,14 +372,13 @@ const ApplicationContainer = createContainer();
 
 ApplicationContainer.load(Symbol('TodosModule'), createTodosModule());
 
-export function getInjection<K extends keyof typeof DI_SYMBOLS>(
-  symbol: K
-): DI_RETURN_TYPES[K] {
+export function getInjection<K extends keyof typeof DI_SYMBOLS>(symbol: K): DI_RETURN_TYPES[K] {
   return ApplicationContainer.get(DI_SYMBOLS[symbol]);
 }
 ```
 
 **4. Usar en Server Actions** (`app/actions.ts`):
+
 ```typescript
 'use server';
 
@@ -375,7 +391,7 @@ export async function createTodo(formData: FormData) {
   } catch (err) {
     // Manejo de errores
   }
-  
+
   revalidatePath('/');
   return { success: true };
 }
@@ -386,6 +402,7 @@ export async function createTodo(formData: FormData) {
 ### Flujo Completo: Crear Todo
 
 **1. Server Action** (Frameworks & Drivers):
+
 ```typescript
 export async function createTodo(formData: FormData) {
   const createTodoController = getInjection('ICreateTodoController');
@@ -394,38 +411,48 @@ export async function createTodo(formData: FormData) {
 ```
 
 **2. Controller** (Interface Adapters):
+
 ```typescript
-export const createTodoController = (...deps) => async (input, sessionId) => {
-  // Validar autenticación y entrada
-  const { user } = await authenticationService.validateSession(sessionId);
-  const { data } = inputSchema.safeParse(input);
-  
-  // Ejecutar caso de uso
-  const todos = await createTodoUseCase(data, user.id);
-  
-  // Formatear respuesta
-  return presenter(todos);
-};
+export const createTodoController =
+  (...deps) =>
+  async (input, sessionId) => {
+    // Validar autenticación y entrada
+    const { user } = await authenticationService.validateSession(sessionId);
+    const { data } = inputSchema.safeParse(input);
+
+    // Ejecutar caso de uso
+    const todos = await createTodoUseCase(data, user.id);
+
+    // Formatear respuesta
+    return presenter(todos);
+  };
 ```
 
 **3. Use Case** (Application):
-```typescript
-export const createTodoUseCase = (...deps) => async (input, userId, tx) => {
-  // Lógica de negocio
-  if (input.todo.length < 4) {
-    throw new InputParseError('Todo must be at least 4 chars');
-  }
 
-  // Llamar al repositorio
-  return await todosRepository.createTodo({
-    todo: input.todo,
-    userId,
-    completed: false,
-  }, tx);
-};
+```typescript
+export const createTodoUseCase =
+  (...deps) =>
+  async (input, userId, tx) => {
+    // Lógica de negocio
+    if (input.todo.length < 4) {
+      throw new InputParseError('Todo must be at least 4 chars');
+    }
+
+    // Llamar al repositorio
+    return await todosRepository.createTodo(
+      {
+        todo: input.todo,
+        userId,
+        completed: false,
+      },
+      tx,
+    );
+  };
 ```
 
 **4. Repository** (Infrastructure):
+
 ```typescript
 export class TodosRepository implements ITodosRepository {
   async createTodo(todo: TodoInsert, tx?: Transaction): Promise<Todo> {
@@ -439,6 +466,7 @@ export class TodosRepository implements ITodosRepository {
 ## 🧪 Testing
 
 ### Estructura de Tests
+
 Los tests siguen la misma estructura que `src/`:
 
 ```
@@ -455,6 +483,7 @@ tests/
 ```
 
 ### Ejemplo de Test de Use Case:
+
 ```typescript
 // tests/unit/application/use-cases/todos/create-todo.use-case.test.ts
 import { getInjection } from '@/di/container';
@@ -468,10 +497,7 @@ it('creates todo', async () => {
     password: 'password',
   });
 
-  const result = await createTodoUseCase(
-    { todo: 'Test todo' }, 
-    session.userId
-  );
+  const result = await createTodoUseCase({ todo: 'Test todo' }, session.userId);
 
   expect(result).toMatchObject({
     todo: 'Test todo',
@@ -482,6 +508,7 @@ it('creates todo', async () => {
 ```
 
 ### Mocks para Testing
+
 ```typescript
 // src/infrastructure/repositories/todos.repository.mock.ts
 export class MockTodosRepository implements ITodosRepository {
@@ -498,12 +525,14 @@ export class MockTodosRepository implements ITodosRepository {
 ## ✅ Mejores Prácticas
 
 ### 1. Naming Conventions
+
 - **Interfaces**: Prefijo `I` (ej: `IAuthenticationService`)
 - **Use Cases**: Sufijo `.use-case.ts` (ej: `create-todo.use-case.ts`)
 - **Controllers**: Sufijo `.controller.ts`
 - **Repositories**: Sufijo `.repository.ts`
 
 ### 2. Error Handling
+
 - Crear errores personalizados en `entities/errors/`
 - Capturar errores de librerías externas en Infrastructure
 - Convertir a errores del dominio
@@ -520,6 +549,7 @@ try {
 ```
 
 ### 3. Transacciones
+
 - Pasar transacciones como parámetro opcional
 - Usar el patrón `invoker = tx ?? db`
 
@@ -531,11 +561,13 @@ async createTodo(todo: TodoInsert, tx?: Transaction): Promise<Todo> {
 ```
 
 ### 4. Validación
+
 - Validación de entrada en Controllers (usando Zod)
 - Validación de negocio en Use Cases
 - Validación de datos en Models
 
 ### 5. Instrumentación
+
 - Usar el servicio de instrumentación para observabilidad
 - Envolver operaciones importantes con spans
 
@@ -544,18 +576,20 @@ return await instrumentationService.startSpan(
   { name: 'createTodo Use Case', op: 'function' },
   async () => {
     // Lógica del use case
-  }
+  },
 );
 ```
 
 ## 🚀 Implementación en Aluna AI
 
 ### Paso 1: Instalar Dependencias
+
 ```bash
 npm install @evyweb/ioctopus zod
 ```
 
 ### Paso 2: Crear Estructura de Directorios
+
 ```bash
 mkdir -p src/{application/{use-cases,repositories,services},entities/{models,errors},infrastructure/{repositories,services},interface-adapters/controllers}
 mkdir -p di/{modules}
@@ -563,6 +597,7 @@ mkdir -p tests/unit/{application,interface-adapters}
 ```
 
 ### Paso 3: Implementar Capa por Capa
+
 1. Definir modelos en `entities/models/`
 2. Crear errores personalizados en `entities/errors/`
 3. Definir interfaces en `application/`
@@ -572,6 +607,7 @@ mkdir -p tests/unit/{application,interface-adapters}
 7. Configurar inyección de dependencias en `di/`
 
 ### Paso 4: Integrar con Next.js
+
 - Usar controllers en Server Actions
 - Mantener componentes React simples
 - Manejar errores apropiadamente

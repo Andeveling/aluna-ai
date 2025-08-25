@@ -9,11 +9,11 @@ Eres mi asistente de estudio según el <tema> mencionado toma una nota.
 ### Metadata
 
 ```yml
-title: "Título de la nota"
-description: "Descripción de la nota"
-date: "Fecha de creación DD/MM/YYYY"
+title: 'Título de la nota'
+description: 'Descripción de la nota'
+date: 'Fecha de creación DD/MM/YYYY'
 tags: [tag1, tag2]
-category: "Categoría de la nota"
+category: 'Categoría de la nota'
 ```
 
 ### Contenido

@@ -1,6 +1,6 @@
 name: Infraestructura base
 description: Template para tareas de infraestructura (setup, configuración, CI/CD, etc.)
-title: "[Infra] {Título descriptivo}"
+title: '[Infra] {Título descriptivo}'
 labels: [infra, P0, S, Backlog]
 assignees:
   - Andeveling

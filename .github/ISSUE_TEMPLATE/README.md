@@ -28,7 +28,6 @@ Te ayudo a crear templates YAML para issues de GitHub siguiendo las mejores prá
    - Estado actual
    - Criterios de éxito
 
-
 ## Características clave:
 
 - **Validaciones requeridas** para campos críticos

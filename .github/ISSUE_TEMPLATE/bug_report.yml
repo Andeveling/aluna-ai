@@ -1,7 +1,7 @@
 name: 🐛 Bug Report
 description: File a bug report to help us improve
-title: "[Bug]: "
-labels: ["bug", "triage"]
+title: '[Bug]: '
+labels: ['bug', 'triage']
 body:
   - type: markdown
     attributes:
@@ -13,7 +13,7 @@ body:
     attributes:
       label: Bug Description
       description: A clear and concise description of what the bug is.
-      placeholder: "The bug manifests as..."
+      placeholder: 'The bug manifests as...'
     validations:
       required: true
 
@@ -35,7 +35,7 @@ body:
     attributes:
       label: Expected Behavior
       description: A clear and concise description of what you expected to happen.
-      placeholder: "I expected..."
+      placeholder: 'I expected...'
     validations:
       required: true
 
@@ -44,7 +44,7 @@ body:
     attributes:
       label: Actual Behavior
       description: What actually happened instead?
-      placeholder: "Instead, what happened was..."
+      placeholder: 'Instead, what happened was...'
     validations:
       required: true
 
@@ -67,7 +67,7 @@ body:
     attributes:
       label: Screenshots/Videos
       description: If applicable, add screenshots or videos to help explain your problem.
-      placeholder: "You can drag and drop images here..."
+      placeholder: 'You can drag and drop images here...'
 
   - type: textarea
     id: error-logs
