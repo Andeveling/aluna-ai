@@ -1,3 +1,3 @@
 export default function Page() {
-  return <>Hola</>;
+  return <div className="w-full border h-full">Hola</div>;
 }
