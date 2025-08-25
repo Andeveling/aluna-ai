@@ -40,265 +40,267 @@ Aluna AI combina la sabiduría ancestral de la cosmovisión Kogui con inteligenc
 ## 🚀 **Roadmap 2025**
 
 ### **Q1 - Validación y MVP** 📅
-- [x] Setup infraestructura (Next.js 15 + Supabase) ✨
+- [ ] Setup infraestructura (Next.js 15 + Supabase)
 - [ ] Identidad visual inspirada en cosmovisión Kogui
 - [ ] Asistente AI básico con prompt engineering
 - [ ] Landing page y registro early adopters
 - [ ] Onboarding con fortalezas personales
 
-## 🛠 **Stack Técnico**
+### **Q2 - Experiencia del Usuario** 🎯
+- [ ] Historial de decisiones por usuario
+- [ ] Recomendaciones estructuradas (3 opciones + pros/contras)
+- [ ] Dashboard simple con visualizaciones
+- [ ] Sistema de feedback post-decisión
+- [ ] Test cerrado con 30 emprendedores colombianos
 
-# Aluna AI - Plataforma de Aprendizaje Inteligente
+### **Q3 - Escalabilidad y Comunidad** 🌍
+- [ ] Sistema multi-perfil para equipos
+- [ ] Fine-tuning del modelo AI con datos reales
+- [ ] Analytics avanzado de impacto en decisiones
+- [ ] Lanzamiento beta pública
+- [ ] Contenido educativo sobre fortalezas
 
-Aluna AI es una plataforma educativa moderna construida con **Clean Architecture** y tecnologías de vanguardia, diseñada para ofrecer experiencias de aprendizaje personalizadas y eficientes.
+### **Q4 - Consolidación y Expansión** 💰
+- [ ] Integraciones (Calendarios, Notion, Slack)
+- [ ] Gamificación con badges y logros
+- [ ] App móvil (PWA + React Native)
+- [ ] Modelo freemium y consultoría especializada
+- [ ] Expansión a México y Perú
 
-## 🏗️ Arquitectura
+## 🛠️ **Stack Tecnológico**
 
-Este proyecto implementa **Clean Architecture** siguiendo los principios de Robert C. Martin, asegurando código mantenible, testeable y escalable.
+### **Frontend**
+- **Next.js 15** - Framework React de última generación
+- **TypeScript** - Tipado estático para mayor robustez
+- **Tailwind CSS** - Diseño responsive y moderno
+- **Shadcn/ui** - Componentes accesibles y elegantes
 
-### Estructura del Proyecto
+### **Backend & Database**
+- **Supabase** - Backend como servicio con PostgreSQL
+- **Prisma** - ORM type-safe para base de datos
+- **NextAuth.js** - Autenticación segura y flexible
+
+### **AI & Analytics**
+- **OpenAI GPT-4** - Motor de inteligencia artificial
+- **Langchain** - Framework para aplicaciones LLM
+- **Vercel Analytics** - Métricas de rendimiento
+- **PostHog** - Analytics de producto y comportamiento
+
+### **DevOps & Deployment**
+- **Vercel** - Deployment y hosting optimizado
+- **GitHub Actions** - CI/CD automatizado
+- **Docker** - Containerización para desarrollo
+
+## 📦 **Instalación y Setup**
+
+### **Prerrequisitos**
+```bash
+node --version  # v22.0.0+
+npm --version   # v11.0.0+
+```
+
+### **Clonar el repositorio**
+```bash
+git clone https://github.com/Andeveling/aluna-ai.git
+cd aluna-ai
+```
+
+### **Instalar dependencias**
+```bash
+pnpm install
+```
+
+### **Variables de entorno**
+Crea un archivo `.env.local` basado en `.env.example`:
+
+```bash
+# Database
+DATABASE_URL="postgresql://..."
+DIRECT_URL="postgresql://..."
+
+# Authentication
+NEXTAUTH_SECRET="your-secret-here"
+NEXTAUTH_URL="http://localhost:3000"
+
+# AI Services
+OPENAI_API_KEY="sk-..."
+
+# Analytics
+NEXT_PUBLIC_POSTHOG_KEY="phc_..."
+NEXT_PUBLIC_POSTHOG_HOST="https://app.posthog.com"
+```
+
+### **Setup de base de datos**
+```bash
+pnpm dlx prisma generate
+pnpm dlx prisma db push
+pnpm dlx prisma db seed  # Datos de ejemplo
+```
+
+### **Ejecutar en desarrollo**
+```bash
+pnpm run dev
+# La aplicación estará disponible en http://localhost:3000
+```
+
+## 🧪 **Testing**
+
+```bash
+# Tests unitarios
+pnpm run test
+
+# Tests de integración
+pnpm run test:integration
+
+# Tests end-to-end
+pnpm run test:e2e
+
+# Coverage
+pnpm run test:coverage
+```
+
+## 📁 **Estructura del Proyecto**
 
 ```
 aluna-ai/
-├── app/                          # 🖥️ Frameworks & Drivers Layer (Next.js)
-│   ├── components/               # Componentes React
-│   ├── actions.ts               # Server Actions
-│   └── page.tsx                 # Páginas y rutas
-├── src/                         # 🏛️ Capas de Arquitectura Limpia
-│   ├── application/             # 📋 Application Layer
-│   │   ├── use-cases/          # Casos de uso (lógica de negocio)
-│   │   ├── repositories/       # Interfaces de repositorios
-│   │   └── services/           # Interfaces de servicios
-│   ├── entities/               # 🎯 Entities Layer
-│   │   ├── models/            # Modelos de dominio (con Zod)
-│   │   └── errors/            # Errores personalizados
-│   ├── infrastructure/         # 🔧 Infrastructure Layer
-│   │   ├── repositories/      # Implementaciones de repositorios
-│   │   └── services/          # Implementaciones de servicios
-│   └── interface-adapters/     # 🔌 Interface Adapters Layer
-│       └── controllers/       # Controladores (punto de entrada)
-├── di/                         # 💉 Dependency Injection
-│   ├── container.ts           # Contenedor de DI
-│   └── modules/              # Módulos de inyección
-├── docs/                      # 📚 Documentación
-│   ├── CLEAN_ARCHITECTURE.md # Guía de arquitectura
-│   └── IMPLEMENTATION_PLAN.md # Plan de implementación
-└── tests/                     # 🧪 Tests (estructura espejo de src/)
+├── 📁 app/                     # App Router (Next.js 13+)
+│   ├── 📁 (auth)/             # Rutas de autenticación
+│   ├── 📁 dashboard/          # Panel de usuario
+│   ├── 📁 chat/               # Interfaz del asistente AI
+│   └── 📁 api/                # API Routes
+├── 📁 components/             # Componentes React reutilizables
+│   ├── 📁 ui/                 # Componentes base (shadcn/ui)
+│   ├── 📁 forms/              # Formularios y validaciones
+│   └── 📁 charts/             # Visualizaciones de datos
+├── 📁 lib/                    # Utilidades y configuraciones
+│   ├── 📁 ai/                 # Lógica de IA y prompts
+│   ├── 📁 db/                 # Configuración de base de datos
+│   └── 📁 utils/              # Funciones auxiliares
+├── 📁 prisma/                 # Schema y migraciones de DB
+├── 📁 public/                 # Assets estáticos
+└── 📁 tests/                  # Suite de tests
 ```
 
-## 🚀 Características Principales
+## � **Ubicación de AlunaAI en el sistema económico**
 
-### 🎯 Para Estudiantes
-- **Cursos Interactivos**: Contenido multimedia con seguimiento de progreso
-- **Aprendizaje Personalizado**: IA que adapta el contenido al ritmo individual
-- **Evaluaciones Inteligentes**: Quizzes adaptativos y feedback instantáneo
-- **Certificaciones**: Certificados verificables al completar cursos
+Según la clasificación tradicional de sectores económicos (ver recurso "El Sistema Económico"), AlunaAI se ubica en:
 
-### 👨‍🏫 Para Instructores
-- **Creación de Cursos**: Editor intuitivo para contenido multimedia
-- **Analytics Avanzado**: Métricas detalladas de engagement y progreso
-- **Herramientas de Evaluación**: Sistema de calificaciones automatizado
-- **Comunicación Directa**: Mensajería integrada con estudiantes
+- **Sector económico:** Terciario (Servicios)
+- **Subsector:** Servicios basados en tecnología de la información y consultoría
 
-### 🏛️ Para Instituciones
-- **Gestión Masiva**: Administración de múltiples cursos y usuarios
-- **Integración LMS**: Compatible con sistemas existentes
-- **Reportes Institucionales**: Dashboard ejecutivo con métricas clave
-- **White Label**: Personalización completa de marca
+**Justificación:**
+AlunaAI es una plataforma digital que ofrece servicios de inteligencia artificial, consultoría para la toma de decisiones y desarrollo personal, apoyada en tecnología y conocimiento. No produce bienes materiales ni transforma materias primas (sectores primario o secundario), sino que provee servicios avanzados, educativos y tecnológicos.
 
-## �️ Stack Tecnológico
+Esto se alinea con la descripción del proyecto, donde se destaca el enfoque en IA, consultoría, educación y tecnología para el desarrollo humano y organizacional. Si el marco de referencia incluye una categoría de “servicios avanzados”, “servicios profesionales” o “tecnologías de la información”, ahí encajaría AlunaAI.
 
-### Frontend & Framework
-- **Next.js 15** - Framework React con App Router
-- **TypeScript** - Tipado estático
-- **Tailwind CSS** - Diseño utilitario
-- **React Hook Form** - Manejo de formularios
+## �🎨 **Filosofía de Diseño**
 
-### Backend & Base de Datos
-- **Drizzle ORM** - ORM type-safe para TypeScript
-- **PostgreSQL** - Base de datos relacional
-- **Lucia Auth** - Autenticación segura
-- **Zod** - Validación de esquemas
+### **Inspiración Kogui**
+- **Colores naturales**: Paleta inspirada en la Sierra Nevada
+- **Formas orgánicas**: Geometría que refleja la naturaleza
+- **Equilibrio**: Balance entre tradición y modernidad
 
-### Arquitectura & Testing
-- **IoCtopus** - Inyección de dependencias
-- **Vitest** - Framework de testing
-- **ESLint Boundaries** - Enforce arquitectura limpia
+### **Principios UX**
+- **Simplicidad consciente**: Interfaces limpias que facilitan la reflexión
+- **Accesibilidad**: Diseño inclusivo para todos los usuarios
+- **Retroalimentación**: Comunicación clara del estado del sistema
 
-### Infraestructura
-- **Vercel** - Deployment y hosting
-- **Uploadthing** - Gestión de archivos
-- **Resend** - Servicio de emails
-- **Sentry** - Monitoring y error tracking
+## 🤝 **Contribuir al Proyecto**
 
-## 🏃‍♂️ Inicio Rápido
+¡Nos encanta recibir contribuciones! Aquí te explicamos cómo participar:
 
-### Prerrequisitos
-- Node.js 18+
-- PostgreSQL 14+
-- pnpm (recomendado)
-
-### Instalación
-
-1. **Clonar el repositorio**
-   ```bash
-   git clone https://github.com/tu-usuario/aluna-ai.git
-   cd aluna-ai
-   ```
-
-2. **Instalar dependencias**
-   ```bash
-   pnpm install
-   ```
-
-3. **Configurar variables de entorno**
-   ```bash
-   cp .env.example .env.local
-   # Editar .env.local con tus configuraciones
-   ```
-
-4. **Configurar base de datos**
-   ```bash
-   pnpm db:push
-   pnpm db:seed
-   ```
-
-5. **Ejecutar en desarrollo**
-   ```bash
-   pnpm dev
-   ```
-
-Visita [http://localhost:3000](http://localhost:3000) para ver la aplicación.
-
-## 🧪 Testing
-
-### Ejecutar Tests
+### **1. Fork del repositorio**
 ```bash
-# Tests unitarios
-pnpm test
-
-# Tests con cobertura
-pnpm test:coverage
-
-# Tests en modo watch
-pnpm test:watch
+# Crear fork en GitHub, luego:
+git clone https://github.com/tu-usuario/aluna-ai.git
+cd aluna-ai
+git remote add upstream https://github.com/Andeveling/aluna-ai.git
 ```
 
-### Estructura de Tests
-- **Unit Tests**: `tests/unit/` - Tests de use cases y controladores
-- **Integration Tests**: `tests/integration/` - Tests de flujos completos
-- **E2E Tests**: `tests/e2e/` - Tests end-to-end con Playwright
-
-## 📚 Documentación
-
-- **[Clean Architecture Guide](docs/CLEAN_ARCHITECTURE.md)** - Guía completa de la arquitectura
-- **[Ejemplos Prácticos](docs/CLEAN_ARCHITECTURE_EXAMPLES.md)** - Casos de uso específicos
-- **[Plan de Implementación](docs/IMPLEMENTATION_PLAN.md)** - Roadmap de desarrollo
-- **[API Documentation](docs/API.md)** - Documentación de endpoints
-
-## 🔧 Scripts Disponibles
-
+### **2. Crear rama para tu feature**
 ```bash
-# Desarrollo
-pnpm dev              # Servidor de desarrollo
-pnpm build            # Build de producción
-pnpm start            # Servidor de producción
-pnpm lint             # Linter
-pnpm type-check       # Verificación de tipos
-
-# Base de datos
-pnpm db:push          # Aplicar cambios de schema
-pnpm db:seed          # Poblar con datos de prueba
-pnpm db:studio        # Abrir Drizzle Studio
-pnpm db:reset         # Resetear base de datos
-
-# Testing
-pnpm test             # Tests unitarios
-pnpm test:e2e         # Tests end-to-end
-pnpm test:coverage    # Cobertura de tests
+git checkout -b feature/nueva-funcionalidad
+# o
+git checkout -b fix/corregir-bug
 ```
 
-## 🌟 Características de la Arquitectura
+### **3. Desarrollar y testear**
+```bash
+# Hacer tus cambios
+pnpm run test      # Verificar que pasen los tests
+pnpm run lint      # Revisar código
+pnpm run build     # Verificar que compile
+```
 
-### ✅ Beneficios Implementados
+### **4. Commit siguiendo convenciones**
+```bash
+git commit -m "feat: agregar dashboard de fortalezas"
+git commit -m "fix: corregir error en chat AI"
+git commit -m "docs: actualizar README con nuevas instrucciones"
+```
 
-- **Independencia de Framework**: La lógica de negocio no depende de Next.js
-- **Independencia de Base de Datos**: Fácil cambio de proveedores de DB
-- **Testabilidad**: 90%+ cobertura de código en capas core
-- **Mantenibilidad**: Separación clara de responsabilidades
-- **Escalabilidad**: Arquitectura preparada para crecimiento
+### **5. Pull Request**
+- Abre un PR describiendo los cambios
+- Incluye screenshots si hay cambios visuales
+- Referencia issues relacionados
 
-### 🔒 Principios Aplicados
+### **Tipos de contribuciones bienvenidas:**
+- 🐛 **Bug fixes**
+- ✨ **Nuevas features**
+- 📚 **Mejoras en documentación**
+- 🎨 **Mejoras de diseño/UX**
+- 🧪 **Tests adicionales**
+- 🌍 **Traducciones**
 
-- **Dependency Inversion**: Interfaces definidas en Application, implementadas en Infrastructure
-- **Single Responsibility**: Cada clase/función tiene una única responsabilidad
-- **Open/Closed**: Extensible sin modificar código existente
-- **Interface Segregation**: Interfaces específicas y cohesivas
+## 📄 **Licencia**
 
-## 🤝 Contribuir
+Este proyecto está bajo la Licencia MIT. Ver [LICENSE](LICENSE) para más detalles.
 
-### Flujo de Desarrollo
+## 🙏 **Agradecimientos**
 
-1. **Fork el proyecto**
-2. **Crear rama feature** (`git checkout -b feature/nueva-caracteristica`)
-3. **Seguir convenciones de arquitectura** (ver docs/CLEAN_ARCHITECTURE.md)
-4. **Escribir tests** para nuevas funcionalidades
-5. **Commit con mensajes descriptivos** (usar Conventional Commits)
-6. **Push a la rama** (`git push origin feature/nueva-caracteristica`)
-7. **Crear Pull Request**
+### **Inspiración Cultural**
+- **Pueblo Kogui** - Por su sabiduría ancestral y visión holística del mundo
+- **Sierra Nevada de Santa Marta** - Territorio sagrado que inspira nuestro diseño
 
-### Convenciones de Código
+### **Comunidad Técnica**
+- **Next.js Team** - Por el framework que potencia nuestra aplicación
+- **Vercel** - Por la infraestructura de deployment
+- **Supabase** - Por simplificar nuestro backend
+- **OpenAI** - Por democratizar el acceso a IA avanzada
 
-- **ESLint**: Configurado para enforar reglas de arquitectura
-- **Prettier**: Formateo automático de código
-- **TypeScript**: Tipado estricto requerido
-- **Testing**: Tests requeridos para use cases y controladores
+### **Early Adopters**
+Gracias a todos los emprendedores colombianos que están probando Aluna AI en sus primeras versiones y compartiendo feedback valioso.
 
-## 📈 Roadmap
+## 📞 **Contacto y Soporte**
 
-### 🎯 V1.0 - Core Platform (Q1 2025)
-- [x] Arquitectura limpia implementada
-- [ ] Sistema de autenticación completo
-- [ ] Gestión básica de cursos
-- [ ] Dashboard para instructores
-- [ ] Reproductor de contenido
+### **Creador**
+- **GitHub**: [@Andeveling](https://github.com/Andeveling)
+- **Email**: contacto@aluna-ai.com
+- **LinkedIn**: [Perfil del fundador]
 
-### 🚀 V1.1 - AI Features (Q2 2025)
-- [ ] Recomendaciones personalizadas con IA
-- [ ] Asistente virtual para estudiantes
-- [ ] Evaluaciones adaptativas
-- [ ] Análisis de sentimiento en feedback
+### **Comunidad**
+- **Discord**: [Servidor de la comunidad]
+- **Twitter**: [@AlunaAI_co]
+- **Blog**: [blog.aluna-ai.com]
 
-### 🌟 V2.0 - Advanced Features (Q3 2025)
-- [ ] Realidad virtual/aumentada
-- [ ] Blockchain para certificaciones
-- [ ] API pública para integraciones
-- [ ] Mobile app nativa
-
-## 📄 Licencia
-
-Este proyecto está licenciado bajo la [Licencia MIT](LICENSE) - ver el archivo LICENSE para más detalles.
-
-## 🙋‍♂️ Soporte
-
-- **Documentación**: [docs/](docs/)
-- **Issues**: [GitHub Issues](https://github.com/tu-usuario/aluna-ai/issues)
-- **Discusiones**: [GitHub Discussions](https://github.com/tu-usuario/aluna-ai/discussions)
-- **Email**: soporte@aluna-ai.com
+### **Soporte Técnico**
+- **Issues**: [GitHub Issues](https://github.com/Andeveling/aluna-ai/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Andeveling/aluna-ai/discussions)
+- **Wiki**: [Documentación técnica](https://github.com/Andeveling/aluna-ai/wiki)
 
 ---
 
-**Desarrollado con ❤️ siguiendo Clean Architecture principles**
+## 🌱 **Únete a la Revolución de las Decisiones Conscientes**
 
-## 📚 **Documentación Adicional**
+Aluna AI no es solo una herramienta tecnológica, es un puente entre la sabiduría ancestral y las posibilidades del futuro. Te invitamos a ser parte de esta comunidad que busca tomar decisiones más conscientes, auténticas y alineadas con nuestras fortalezas naturales.
 
-- **SENA**: Documentación del proyecto educativo en `/docs/SENA/`
-- **ROADMAP.yml**: Plan detallado del proyecto
+**¿Listo para conectar con tu Aluna interior?** 
 
-## 🌱 **Contributing**
-
-¡Las contribuciones son bienvenidas! Este proyecto busca crear tecnología consciente que honre tanto la innovación moderna como la sabiduría ancestral.
+[🚀 **Probar Demo**](https://aluna-ai.vercel.app) | [📧 **Newsletter**](https://aluna-ai.com/newsletter) | [💬 **Discord**](https://discord.gg/aluna-ai)
 
 ---
 
-*Construido con 🌱 consciencia y 💚 respeto por la Madre Tierra*
+<div align="center">
+  <sub>Hecho con 💜 desde Colombia para el mundo</sub><br>
+  <sub>Inspirado en la sabiduría Kogui • Potenciado por IA moderna</sub>
+</div>
